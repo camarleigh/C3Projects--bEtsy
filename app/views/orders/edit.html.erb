@@ -1,0 +1,72 @@
+<h2>Purchase Details</h2>
+<div class="row">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+      <% @order_items.each do |item| %>
+        <tr>
+          <td><%= image_tag(item.product.photo_url, class: "cart-thumbnail") %></td>
+
+          <td><%= link_to "#{item.product.name}", merchant_product_path(merchant_id: item.product.merchant_id, id: item.product.id) %></td>
+
+          <td><%= number_to_currency(item.product.price) %></td>
+
+          <td><%= link_to "Remove", order_item_path(item.id), data: {confirm: "Are you sure you want to remove this item from your cart?"}, method: :delete, class: "btn btn-danger" %></td>
+          <td><%= number_to_currency(item.revenue) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><h5>Shipping Cost</h5></td>
+        <td><h5><%= shipping_cost(session[:shipping_cost].to_i) %></h5></td>
+      <tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><h4>Total</h4></td>
+        <td><h4><%= number_to_currency(@order_total) %></h4></td>
+      </tr>
+    </table>
+ </div>
+
+
+
+<%= bootstrap_form_for @order, url: order_path(params[:id]), :html => {:class => 'form-horizontal'} do |f| %>
+<fieldset>
+  <legend>Add Payment</legend>
+    <div class="col-md-6">
+      <%= f.text_field :name, required: true %>
+
+      <%= f.text_field :email, required: true %>
+
+      <%= f.text_field :street,required: true %>
+
+      <%= f.text_field :city, required: true %>
+
+      <%= f.text_field :state, options = {maxlength: 2} %>
+
+      <%= f.text_field :zip, required: true %>
+    </div>
+
+    <div class="col-md-6">
+
+      <%= f.text_field :credit_card, options = {maxlength: 16} %>
+
+      <%= f.text_field :exp_date, required: true %>
+
+      <%= f.text_field :cvv, options = {maxlength: 3}%>
+
+      <%= f.text_field :billing_zip, required: true %>
+    </div>
+ </fieldset>
+
+  <%= f.submit 'Place Order', :data => {:confirm => 'Place Order Now?'}, class: 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Shipping Type</th>
+      <th>Shipping Cost</th>
+      <th>Estimated Delivery Date</th>
+      <th>Choose Option</th>
+    </tr>
+  </thead>
+
+  <% @response.each do |key, value| %>
+    <tr><th colspan="4"><%= key.upcase %> OPTIONS</th></tr>
+    <% value.each do |delivery_type| %>
+      <tr>
+        <td><%= delivery_type[0] %></td>
+        <td><%= shipping_cost(delivery_type[1]) %></td>
+        <td><%= delivery_type[2].nil? ? "No information available" : delivery_date(delivery_type[2])  %></td>
+        <td><%= link_to "Select", order_select_shipping_method_path(delivery_method: delivery_type[0], shipping_cost: delivery_type[1], shipping_estimate: delivery_type[2]), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
+

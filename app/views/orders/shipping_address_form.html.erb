@@ -1,0 +1,24 @@
+<h3>Get Shipping Estimates:</h3>
+
+<div class="form-group">
+  <%= form_tag order_shipping_estimates_path do %>
+
+    <%= label_tag :address %>
+    <%= text_field_tag :address, nil %>
+
+    <%= label_tag :city %>
+    <%= text_field_tag :city, nil %>
+
+    <%= label_tag :state %>
+    <%= select_tag(:state, options_for_select(@states)) %>
+
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip, nil, placeholder: "ex. 12345", maxlength: 5 %>
+
+    <%= label_tag :country %>
+    <%= text_field_tag (:country), nil, placeholder: "ex. US", maxlength: 2, size: 2 %>
+
+    <%= submit_tag 'Get Shipping Estimate', class: "btn btn-default" %>
+  <% end %>
+</div>
+

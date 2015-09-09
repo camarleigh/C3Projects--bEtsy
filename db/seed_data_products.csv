@@ -1,0 +1,13 @@
+name,description,price,stock,active,photo_url,merchant_id,length,width,weight
+Super mario bros.,"""Sah-weet adventure game featuring two Italian-looking cartoon guys who dress alike but in different colors.""",25.99,10,TRUE,supermario.jpg,1,100,5,20
+Cabbage patch kid,"""Super creepy dolls. You don't buy these babies, you adopt them.""",33.50,7,TRUE,cabbagepatch.jpg,2,100,5,20
+Skip-it,"""Put it around your ankle and fling the plastic ball around in a circle. Make sure you jump over it as it flies by, or you'll fall on your face.""",17.99,5,TRUE,skipit.jpg,3,100,5,20
+E.T. VHS,"""This movie is about a wrinkly alien who totally creeps on this little boy's house, but the little boy is ok with it and so they become friends. Then the boy and the alien ride off into the moon-set on a flying bike while wearing a blanket.""",8.50,2,TRUE,et.jpg,4,100,5,20
+Banana Clip,"""More complicated than a scrunchie.""",3.50,12,TRUE,bananaclip.jpg,5,100,5,20
+Aquanet,"""The bigger the hair, the better!""",6.00,3,TRUE,aquanet.jpg,1,100,5,20
+Jelly bracelets,"""Cheap bracelets by the bajillions in every color.Try to fill up your whole arm.""",1.00,300,TRUE,jellybracelets.jpg,2,100,5,20
+Lace gloves,"""Protect your hands while you roll on the floor, moan and shock grandma! Fingerless of course!""",8.00,6,TRUE,lace_gloves.jpg,3,100,5,20
+Smurf figurines,"""Start your own smurf village!""",14.99,20,TRUE,smurfs.jpg,4,100,5,20
+Easy Bake Oven,"""You too can make cake with a light bulb!"" ",34.99,4,FALSE,easybakeoven.jpg,5,100,5,20
+Dance Poms,"""Say it with us, 'Oh Mickey you're so fine, you're so fine you blow my mind! Hey Mickey!'""",40.00,25,TRUE,pompoms.jpg,1,100,5,20
+Golden Girls T-shirt,"""Your favorite ladies from the 80's!""",12.95,7,TRUE,goldengirlsshirt.jpg,2,100,5,20

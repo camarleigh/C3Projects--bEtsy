@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container-fluid {
+  margin: 20px;
+}
+
+header {
+  min-height: 50px;
+}
+
+.account-buttons,
+header h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.account-buttons a {
+  margin-left: 5px;
+}
+
+input {
+  margin: 5px;
+}
+
+.login-form {
+  margin-top: 40px;
+}
+
+img {
+  height: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+table {
+  margin-top: 40px;
+}
+
+td {
+  height: 50px;
+}
+
+ul li {
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: white;
+}
+
+.cart-thumbnail {
+  height: 100px;
+}
+
+.merch-dash-tools h5 {
+  display: inline-block;
+}
+
+.list-inline li {
+  border: solid grey 1px;
+}
+
+.product-image img {
+  width: auto;
+  height: 200px;
+}
+
+.logo img {
+  height: auto;
+  width: 100%;
+}
+
+.logo {
+  margin-top: 15px;
+}
+
+.navbar {
+  margin-top: 60px;
+}
+
+.navbar-default {
+  background-color: #FFF0FB;
+  border-style: none;
+}
+
+.product-row {
+  margin-top: 30px;
+}
+
+.thumbnail {
+  margin-top: 20px;
+}

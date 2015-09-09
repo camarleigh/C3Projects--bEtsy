@@ -1,0 +1,30 @@
+<h1>Add New Product</h1>
+
+<%= bootstrap_form_for @product, url: merchant_products_path(params[:merchant_id]) do |f| %>
+  <fieldset>
+    <legend>Product Details</legend>
+      <%= f.text_field :name %>
+
+      <%= f.text_area :description %>
+
+      <%= f.text_field :price %>
+
+      <%= f.number_field :stock %>
+
+      <%= f.text_field :length %>
+
+      <%= f.text_field :width %>
+
+      <%= f.text_field :weight %>
+
+      <%= f.select :active, [['Active', true], ['Inactive', false]] %>
+
+      <%= f.text_field :photo_url %>
+
+      <%= f.collection_check_boxes( :categories, @categories, :id, :name ) %>
+
+      <%= f.hidden_field :merchant_id, :value => params[:merchant_id] %>
+  </fieldset>
+
+  <%= f.submit %>
+<% end %>

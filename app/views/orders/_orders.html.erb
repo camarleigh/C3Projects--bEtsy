@@ -1,0 +1,83 @@
+<h1>Merchant's Orders</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Total Revenue: <%= number_to_currency(shipped_revenue + unshipped_revenue) %> </h3>
+    <h4>Shipped: <%= number_to_currency(shipped_revenue)%></h4>
+    <h4>Not Shipped: <%= number_to_currency(unshipped_revenue) %></h4>
+  </div>
+  <div class="col-md-6">
+    <h3>Total Number of Order Items: <%= (shipped_count + unshipped_count) %></h3>
+    <h4>Shipped: <%= shipped_count %></h4>
+    <h4>Not Shipped: <%= unshipped_count %></h4>
+  </div>
+</div>
+
+<h3>Orders</h3>
+<ul class="nav nav-tabs">
+  <% if request.path == merchant_orders_path(params[:merchant_id]) %>
+    <li role="presentation" class="active">
+  <% else %>
+    <li role="presentation">
+  <% end %>
+    <%= link_to "All Orders", merchant_orders_path(params[:merchant_id]), class: "btn btn-default" %>
+  </li>
+
+  <% if request.path == orders_shipped_path(params[:merchant_id]) %>
+    <li role="presentation" class="active">
+  <% else %>
+    <li role="presentation">
+  <% end %>
+    <%= link_to "Shipped Orders", orders_shipped_path(params[:merchant_id]), class: "btn btn-default" %>
+  </li>
+
+  <% if request.path == orders_unshipped_path(params[:merchant_id]) %>
+    <li role="presentation" class="active">
+  <% else %>
+    <li role="presentation">
+  <% end %>
+    <%= link_to "Unshipped Orders", orders_unshipped_path(params[:merchant_id]), class: "btn btn-default" %>
+  </li>
+</ul>
+
+
+<% orders.each do |order| %>
+    <h4><strong><%= link_to "Order ##{order.id}", merchant_order_path(params[:merchant_id], order.id) %></strong></h4>
+    <h6>Ordered on: <%= order.updated_at %></h6>
+
+    <table class="table table-hover">
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total Revenue</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      <% total = 0 %>
+      <% order_items.each do |order_item| %>
+        <% if order_item.order == order %>
+          <tr>
+            <td class="col-sm-3"><%= link_to "#{order_item.product.name}", product_path(order_item.product_id) %></td>
+            <td class="col-sm-1"><%= order_item.quantity %></td>
+            <td class="col-sm-2"><%= number_to_currency(order_item.product.price) %></td>
+            <td class="col-sm-2"><%= number_to_currency(order_item.revenue) %></td>
+            <% total += order_item.revenue %>
+            <td class="col-sm-2"><%= order_item.shipped ? "Shipped" : "Not Shipped" %></td>
+            <td class="col-sm-2"> <%= order_item.shipped ? (" ") : (link_to "Shipped", mark_shipped_path(params[:merchant_id], order_item.id), method: :patch, class: "btn btn-success") %> </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tfoot>
+        <tr>
+          <td>TOTAL</td>
+          <td></td>
+          <td></td>
+          <td><strong><%= number_to_currency(total) %></strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+<% end %>

@@ -1,0 +1,56 @@
+<h3><%= @unit_total %> <%= @unit_total == 1 ? "Item" : "Items" %> in Your Cart</h3>
+
+
+<% if @order_items.count == 0 %>
+  <p class="text-center">
+    There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+  </p>
+<% else %>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+      </tr>
+      <% @order_items.each do |item| %>
+        <tr>
+          <td><%= image_tag(item.product.photo_url, class: "cart-thumbnail") %></td>
+
+          <td><%= link_to "#{item.product.name}", merchant_product_path(merchant_id: item.product.merchant_id, id: item.product.id) %></td>
+
+          <td><%= number_to_currency(item.product.price) %></td>
+
+          <%= form_for item do |f| %>
+            <td><%= f.number_field :quantity, value: item.quantity.to_i, class: "form_control", min: 1, max: item.product.stock %></td>
+            <%= f.hidden_field :product_id, value: item.product_id %>
+            <%= f.hidden_field :id, value: item.id %>
+            <td><%= f.submit "Update Quantity", class: "btn btn-default" %></td>
+          <% end %>
+
+          <td><%= link_to "Remove", order_item_path(item.id), data: {confirm: "Are you sure you want to remove this item from your cart?"}, method: :delete, class: "btn btn-danger" %></td>
+          <td><%= number_to_currency(item.revenue) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>ORDER TOTAL (before shipping): </strong></td>
+        <td><strong><%= number_to_currency(@order_total) %></strong></td>
+      </tr>
+    </table>
+  </div>
+  <!-- LINK TO SHIPPING PAGE: Corinne and Lila  -->
+  <div class="row">
+    <div class="col-md-offset-11">
+      <%= link_to "Checkout", order_shipping_address_form_path(current_order.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

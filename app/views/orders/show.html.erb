@@ -1,0 +1,70 @@
+<h1>Order #<%= @order.id %> Details</h1>
+
+<h3>Payment Details</h3>
+<div class="row">
+  <div class="col-md-8 .col-md-offset-2">
+    <table class="table">
+      <tr>
+        <td class="text-right">Status:</td>
+        <td><%= @order.status %></td>
+        <td class="text-right">Credit Card:</td>
+        <td>XXXX-XXXX-XXXX-<%= @redacted_cc %></td>
+      </tr>
+      <tr>
+        <td class="text-right">Name:</td>
+        <td><%= @order.name %></td>
+        <td class="text-right">Exp Date:</td>
+        <td><%= @order.exp_date %></td>
+      </tr>
+      <tr>
+        <td class="text-right">Email:</td>
+        <td><%= @order.email %></td>
+        <td class="text-right">CCV Code:</td>
+        <td><%= @order.cvv %></td>
+      </tr>
+      <tr>
+        <td class="text-right">Address:</td>
+        <td><%= @order.street %> <%= @order.city %>,<%= @order.state %> <%= @order.zip %></td>
+        <td class="text-right">Billing Zip:</td>
+        <td><%= @order.billing_zip %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<h3>Order Details</h3>
+<div class="row">
+  <div class="col-md-10 .col-md-offset-1">
+    <table class="table">
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total Revenue</th>
+        <th>Status</th>
+      </tr>
+      <% total = 0 %>
+      <% @order_items.each do |order_item| %>
+        <% if order_item.order_id == @order.id %>
+          <tr>
+            <td class="col-sm-4"><%= order_item.product.name %></td>
+            <td class="col-sm-1"><%= order_item.quantity %></td>
+            <td class="col-sm-2"><%= number_to_currency(order_item.product.price) %></td>
+            <td class="col-sm-2"><%= number_to_currency(order_item.revenue) %></td>
+            <% total += order_item.revenue %>
+            <td class="col-sm-3"><%= order_item.shipped ? "Shipped" : "Not Shipped" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tfoot>
+        <tr>
+          <td>TOTAL</td>
+          <td></td>
+          <td></td>
+          <td><strong><%= number_to_currency(total) %></strong></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

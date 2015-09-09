@@ -1,0 +1,16 @@
+<h3>Categories</h3>
+
+<ul class="list-inline">
+  <% @categories.each do |category| %>
+    <li><%= category.name.titlecase%></li>
+  <% end %>
+</ul>
+
+<div class="form-group col-md-4">
+  <%= form_for @category do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>

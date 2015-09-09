@@ -1,0 +1,8 @@
+<%= render :partial => 'orders',
+           :locals => { :merchant          => @merchant,
+                        :order_items       => @order_items_unshipped,
+                        :orders            => @unshipped_orders,
+                        :shipped_revenue   => @shipped_revenue,
+                        :unshipped_revenue => @unshipped_revenue,
+                        :shipped_count     => @shipped_count,
+                        :unshipped_count   => @unshipped_count } %>

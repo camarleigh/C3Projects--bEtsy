@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  revenue: 1.5
+  merchant_id: 1
+  payment_id: 1
+
+two:
+  status: MyString
+  revenue: 1.5
+  merchant_id: 1
+  payment_id: 1

@@ -1,0 +1,62 @@
+<h1>Edit Product</h1>
+
+<div class="col-md-8">
+  <%= form_for @product, url: merchant_product_path(params[:merchant_id], params[:id]), class: 'form' do |f| %>
+    <fieldset>
+      <legend>Product Details</legend>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.text_field :price, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :stock %>
+          <%= f.number_field :stock, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :length %>
+          <%= f.number_field :length, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :width %>
+          <%= f.number_field :width, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :weight %>
+          <%= f.number_field :weight, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :active %>
+          <%= f.select :active, [['Active', true], ['Inactive', false]], class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :photo_url %>
+          <%= f.text_field :photo_url, class: "form-control" %>
+        </div>
+
+        <%= f.hidden_field :merchant_id, :value => params[:merchant_id] %>
+
+        <div class="form-group">
+          <%= f.label :categories %>
+          <%= f.collection_check_boxes( :categories, @categories, :id, :name, checked: @product.categories.map(&:id), class: "form-control") %>
+        </div>
+    </fieldset>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
